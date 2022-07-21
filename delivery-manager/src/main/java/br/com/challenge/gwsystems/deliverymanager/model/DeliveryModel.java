@@ -1,7 +1,5 @@
 package br.com.challenge.gwsystems.deliverymanager.model;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,29 +21,29 @@ public class DeliveryModel {
 
 	@EqualsAndHashCode.Include
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true)
     private Long id;
 
 	@Column
-    private Date dateExit;
+    private String dateExit;
     
 	@Column
-    private Date dateDelivery;
+    private String dateDelivery;
 
 	@Column
     private String status;
 
 	@ManyToOne
-    @JoinColumn(name = "sender_id", nullable = false)
+    @JoinColumn(name = "sender_id")
     private ClientModel sender;
 
 	@ManyToOne
-    @JoinColumn(name = "addressee_id", nullable = false)
+    @JoinColumn(name = "addressee_id")
     private ClientModel addressee;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "product_id")
     private ProductModel product;
 
 	public Long getId() {
@@ -54,22 +52,6 @@ public class DeliveryModel {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Date getDateExit() {
-		return dateExit;
-	}
-
-	public void setDateExit(Date dateExit) {
-		this.dateExit = dateExit;
-	}
-
-	public Date getDateDelivery() {
-		return dateDelivery;
-	}
-
-	public void setDateDelivery(Date dateDelivery) {
-		this.dateDelivery = dateDelivery;
 	}
 
 	public String getStatus() {
@@ -102,5 +84,21 @@ public class DeliveryModel {
 
 	public void setProduct(ProductModel product) {
 		this.product = product;
+	}
+
+	public String getDateExit() {
+		return dateExit;
+	}
+
+	public void setDateExit(String dateExit) {
+		this.dateExit = dateExit;
+	}
+
+	public String getDateDelivery() {
+		return dateDelivery;
+	}
+
+	public void setDateDelivery(String dateDelivery) {
+		this.dateDelivery = dateDelivery;
 	}
 }

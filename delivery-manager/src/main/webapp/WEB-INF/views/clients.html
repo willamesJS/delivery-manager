@@ -26,7 +26,7 @@
 
 		<div class="list-clients">
 			<div style="display: flex; justify-content: space-between; width: 100%; flex-wrap: wrap;">
-				<div class="card" style="width: 400px; margin-bottom: 2rem;" th:each="client : ${list_clients}">
+				<div class="card" style="width: 350px; margin-bottom: 2rem;" th:each="client : ${list_clients}">
 					<ul class="list-unstyled ">
 						<li style="display: flex;">
 							<p class="text-monospace" style="padding: 0 5px 0 0;">
@@ -108,6 +108,9 @@
 							</a>
 							<a th:href="@{/gw-systems/clients/delete/{id} (id=${client.id})}">
 								<button type="button" class="btn btn-danger">Delete</button>
+							</a>
+							<a th:href="@{/gw-system/form-delivery/{id} (id=${client.id})}">
+							<button type="button" class="btn btn-primary">send product</button>
 							</a>
 						</li>
 					</ul>

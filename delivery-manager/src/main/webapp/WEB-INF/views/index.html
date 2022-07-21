@@ -22,50 +22,39 @@
 					<th scope="col">Status</th>
 					<th scope="col">Data Exit</th>
 					<th scope="col">Data Delivery</th>
-					<th scope="col">Code Product</th>
+					<th scope="col">Product</th>
 					<th scope="col">Sender</th>
+					<th scope="col">Name Sender</th>
 					<th scope="col">Addressee</th>
+					<th scope="col">Name Addressee</th>
 					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th scope="row">1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-					<th>sla</th>
-					<td>Mark</td>
-					<td>Otto</td>
+				<tr th:each="item : ${list}">
+					<th scope="row">[[${item.id}]]</th>
+					<td>[[${item.status}]]</td>
+					<td>[[${item.dateExit}]]</td>
+					<td>[[${item.dateDelivery}]]</td>
+					<td>[[${item.product.id}]]</td>
 					<td>
-						<button type="button" class="btn btn-warning">Edit</button>
-						<button type="button" class="btn btn-info">Delete</button>
+						<span th:if="${item.sender.CPF}">[[${item.sender.CPF}]]</span>
+						<span th:unless="${item.sender.CPF}">[[${item.sender.CNPJ}]]</span>
 					</td>
-				</tr>
-				<tr>
-					<th scope="row">1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-					<th>sla</th>
-					<td>Mark</td>
-					<td>@mdo</td>
+					<td>[[${item.sender.name}]]</td>
 					<td>
-						<button type="button" class="btn btn-warning">Edit</button>
-						<button type="button" class="btn btn-info">Delete</button>
+						<span th:if="${item.addressee.CPF}">[[${item.addressee.CPF}]]</span>
+						<span th:unless="${item.addressee.CPF}">[[${item.addressee.CNPJ}]]</span>
 					</td>
-				</tr>
-				<tr>
-					<th scope="row">1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-					<th>sla</th>
-					<td>Otto</td>
-					<td>@mdo</td>
+					<td>[[${item.addressee.name}]]</td>
 					<td>
-						<button type="button" class="btn btn-warning">Edit</button>
-						<button type="button" class="btn btn-info">Delete</button>
+						<a th:href="@{/gw-system/form-delivery/edit/{id} (id = ${item.id})}">
+							<button type="button" class="btn btn-secondary">Edit</button>
+						</a>
+
+						<a th:href="@{gw-system/delete/{id} (id = ${item.id})}">
+							<button type="button" class="btn btn-danger">Delete</button>
+						</a>
 					</td>
 				</tr>
 			</tbody>
